@@ -58,7 +58,7 @@ class MyQAApp:
         self.messages.append({"role": "assistant", "content": msg})
         st.chat_message({"role": "assistant", "content": msg})  # 显示助手的回答
 
-
+###aaaaa
 if __name__ == '__main__':
     qa_app = MyQAApp()
     qa_app.run()
