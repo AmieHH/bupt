@@ -5,7 +5,7 @@ from zhipuai import ZhipuAI
 class MyQAApp:
     def __init__(self):
         # 使用内置的开发者API
-        self.api_key = "50ea3c031b07edc77a6a640ccb1526d1.NUhtei288b3OrwF4"
+        self.api_key = "9d55fe81e5d814d15a178b6884fd4566.KeHWIwzewSoR0EQS"
         self.client = ZhipuAI(api_key=self.api_key)
         self.response = None
         self.messages = []
