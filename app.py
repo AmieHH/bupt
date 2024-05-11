@@ -1,39 +1,35 @@
 import streamlit as st
 from zhipuai import ZhipuAI
 
+
 class MyQAApp:
     def __init__(self):
-        self.client = ZhipuAI(api_key="50ea3c031b07edc77a6a640ccb1526d1.NUhtei288b3OrwF4")
+        # 使用固定的API Key
+        self.api_key = "5022cd3dacef67b05354432743d43bbd.5gKOTuIkuWQoLbl9"
+        self.client = ZhipuAI(api_key=self.api_key)
         self.response = None
         self.messages = []
 
     def run(self):
         st.title("💬 邮邮助手")
         st.caption("🚀 一款北邮学生出品的校园人工智能助手")
-        self.get_api_key()
 
+        # 显示初始的助手消息
         if not self.messages:
             self.messages.append({"role": "assistant", "content": "How can I help you?"})
+            st.write("助手: How can I help you?")
 
         for msg in self.messages:
-            st.chat_message(msg["role"]).write(msg["content"])
+            st.write(f"{msg['role']}: {msg['content']}")
 
-        if prompt := st.chat_input():
+        if prompt := st.text_input("请输入您的问题："):
             self.ask_question(prompt)
 
-    def get_api_key(self):
-        with st.sidebar:
-            self.api_key = st.text_input("ZhipuAI API Key", key="chatbot_api_key", type="password")
-            "[Get a ZhipuAI API key](https://www.zhipuai.cn/)"
-            "[View the source code](https://github.com/your/repository)"
-            "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/your/repository?quickstart=1)"
-
     def ask_question(self, prompt):
-        if not self.api_key:
-            st.info("Please add your ZhipuAI API key to continue.")
-            return
-
+        # 修正为正确的键 'role' 而不是 'store_role'
         self.messages.append({"role": "user", "content": prompt})
+
+        # 发送问题并获取回答
         self.response = self.client.chat.completions.create(
             model="glm-4v",
             messages=self.messages,
@@ -55,7 +51,7 @@ class MyQAApp:
             msg += chunk.choices[0].delta.content
 
         self.messages.append({"role": "assistant", "content": msg})
-        st.chat_message("assistant").write(msg)
+        st.write(f"助手: {msg}")
 
 
 if __name__ == '__main__':
