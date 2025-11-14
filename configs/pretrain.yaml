@@ -1,0 +1,21 @@
+seed: 42
+
+data_root: data/synth
+window_size: 32
+stride: 16
+batch_size: 32
+
+model:
+  d_model: 128
+  nhead: 4
+  num_layers: 4
+  dim_feedforward: 256
+  dropout: 0.1
+  decoder_depth: 2
+
+mask_ratio: 0.5
+lr: 1e-3
+weight_decay: 1e-4
+epochs: 3
+
+out_dir: outputs/pretrain

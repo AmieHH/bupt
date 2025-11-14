@@ -1,0 +1,25 @@
+seed: 42
+
+data_root: data/synth
+window_size: 32
+stride: 16
+batch_size: 32
+
+model:
+  d_model: 128
+  nhead: 4
+  num_layers: 4
+  dim_feedforward: 256
+  dropout: 0.1
+
+head:
+  aggregation: mean
+
+lambda_consistency: 1.0
+lambda_smooth: 0.1
+
+lr: 5e-4
+weight_decay: 1e-4
+epochs: 3
+
+out_dir: outputs/finetune
